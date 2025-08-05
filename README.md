@@ -100,32 +100,32 @@
 
 ## Prompt
 
-I am trying to solve leetcode problem “238. Product of Array Except Self”. I have written the following program which works for the mentioned test case:
+I am trying to solve leetcode problem 123. Longest consecutive sequence. I have written the following program which works for the mentioned test case:
 
 ```'
-def bruteProductExceptSelf(nums : list[int]) -> list[int]:
-    products = []
-    for i in range(len(nums)): 
-        product = multiply(nums[:i] + nums[i+1:])
-        products.append(product)
-    return products
-
-def multiply(nums: list[int]) -> int:
-    product = 1
-    for num in nums:
-        product = product * num
-    return product
+def bruteForceLongestConsecutive(nums: list[int]) -> int:
+    length = 0
+    max_length = 0
+    nums_unique = list(set(nums))
+    nums_unique.sort()
+    for i in range(len(nums_unique)-1):
+        if nums_unique[i + 1] == nums_unique[i] + 1:
+            length += 1
+            max_length = max(length, max_length)
+        else:
+            length = 0
+    return max_length + 1 if max_length > 0 else 1
 
 ```
 
 testcase:
 
 ```
-nums = [1,2,3,4]
-products = [24,12,8,6]
+i/p = [100,4,200,1,3,2]
+o/p = 4
 ```
 
-For this solution, I have calculated the time complexity as o(n^2). Your task is to go through the written solution carefully and 
+For this solution, I have calculated the time complexity as o(n). Your task is to go through the written solution carefully and 
 
 1. check if the calculated time complexity is correct or not
 2. find out if I have missed handling any edge case
